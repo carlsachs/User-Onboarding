@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {withFormik} from "formik";
+import {withFormik, Form, Field} from "formik";
 
 const UserForm = () => {
   const [user, setUser] = useState({ name: "", email: "", password: "" });
@@ -11,53 +11,56 @@ const UserForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     console.log(user.name);
+    setUser({ name: "", email: "", password: ""});
   };
 
   return (
     <div>
-      <form onSubmit={event => handleSubmit(event)}>
+      <Form>
         <label>
           Name:
-          <input
-            type="text"
+          <Field
+            type="textarea"
             name="name"
-            onChange={event => handleChange(event)}
+            placeholder="Name..."
           />
         </label>
         <label>
           Email:
-          <input
-            type="text"
-            email="email"
-            onChange={event => handleChange(event)}
+          <Field
+            type="email"
+            name="email"
+            placeholder="Email..."
           />
         </label>
         <label>
           Password:
-          <input
-            type="text"
-            password="password"
-            onChange={event => handleChange(event)}
+          <Field
+            type="password"
+            name="password"
+            placeholder="Password"
           />
         </label>
         <label>
           By Checking You Agree to TOS:
           <input
-            type="checkbox"
+            type="radio"
             // password="password"
             onChange={event => handleChange(event)}
           />
         </label>
         <button>Submit!</button>
-      </form>
+      </Form>
     </div>
   );
 };
 
 const FormikUserForm = withFormik({
-    mapPropsToValues(props){
+    mapPropsToValues({name, email, password}){
         return {
-            name: props.name
+            name: name || "",
+            email: email || "",
+            password: password || ""
         }
     }
 })(

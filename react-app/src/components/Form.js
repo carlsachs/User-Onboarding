@@ -17,37 +17,36 @@ const UserForm = () => {
   return (
     <div>
       <Form>
-        <label>
+        <label htmlFor="name">
           Name:
           <Field
+            id="name"
             type="textarea"
             name="name"
             placeholder="Name..."
           />
         </label>
-        <label>
+        <label htmlFor="email">
           Email:
           <Field
+            id="email"
             type="email"
             name="email"
             placeholder="Email..."
           />
         </label>
-        <label>
+        <label htmlFor="password">
           Password:
           <Field
+            id="password"
             type="password"
             name="password"
             placeholder="Password"
           />
         </label>
-        <label>
-          By Checking You Agree to TOS:
-          <input
-            type="radio"
-            // password="password"
-            onChange={event => handleChange(event)}
-          />
+        <label htmlFor="tos"> Do you Accept the Terms of Service?   
+        <Field name="tos" type="checkbox" placeholder="Accept Terms?">
+        </Field>
         </label>
         <button>Submit!</button>
       </Form>
